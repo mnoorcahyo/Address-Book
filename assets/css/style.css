@@ -14,3 +14,11 @@
 .todos > span {
     width: 100%;
 }
+h3{
+    margin-bottom: 5px;
+}
+
+#update_form_group{
+    margin-top: 10px;
+    display: none;
+}

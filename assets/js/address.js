@@ -1,30 +1,31 @@
-let list_todo = [{
-    nama: "cahyo",
-    address: "jl.intan baiduri",
-    phone : "087878875708",
-    email : "mnoorcahyo@gmail.com"
-},
-{
-    nama: "abcd",
-    address: "jl.intan ",
-    phone : "08787887",
-    email : "cahyo@gmail.com"
-},
+let list_todo = JSON.parse(localStorage.list_todo || "[]")
+let update_index = 0
 
-]
+// INPUT FORM
 const input_button = document.getElementById("input_button")
 const input_name = document.getElementById("input_name")
 const input_address = document.getElementById("input_address")
 const input_no_hp = document.getElementById("input_no_hp")
 const input_email = document.getElementById("input_email")
 const output_todo = document.getElementById("output_todo")
+
+// SEARCH FORM
 const input_search = document.getElementById("input_search")
 const search_button = document.getElementById("search_button")
+
+// UPDATE FORM
+const input_update = document.getElementById("update_form_group")
+const done_checkbox = document.getElementById("done_checkbox")
+const update_form_group = document.getElementById("update_form_group")
 const update_button = document.getElementById("update_button")
 
+// EventListener
 input_button.addEventListener("click", create_contact)
 search_button.addEventListener("click", searchTodo)
-update_button.addEventListener("click", updateTodo)
+reset_search_button.addEventListener("click", resetSearch)
+window.onbeforeunload = function () {
+    localStorage.list_todo = JSON.stringify(list_todo)
+}
 
 function create_contact() {
     // e.preventDefault();
@@ -34,30 +35,26 @@ function create_contact() {
         phone: input_no_hp.value,
         email: input_email.value
     })
+    input_name.value = ""
+    input_address.value = ""
+    input_no_hp.value = ""
+    input_email.value = ""
     displayTodo()
 }
 
-// function display_todo() {
-//     let tmp = ""
-//     for (i = 0; i < list_todo.length; i++) {
-//         tmp += list_todo[i]
-//     }
-//    output_todo.innerHTML = tmp
-// }
-
 function displayTodo() {
     let temp = ""
-    for (i = 0; i < list_todo.length; i++) {
-        temp += `
-        <div class="todos">
-                    <span>${list_todo[i].nama}</span>
-                    <span>${list_todo[i].address}</span>
-                    <span>${list_todo[i].phone}</span>
-                    <span>${list_todo[i].email}</span>
-                    <button onClick="deleteTodo(${i})">X</button>
+    list_todo.forEach(function (list, index){
+    temp += `
+        <div class="todos" onDblClick="openUpdateForm(${index})">
+                    <span>${list_todo[index].nama}</span>
+                    <span>${list_todo[index].address}</span>
+                    <span>${list_todo[index].phone}</span>
+                    <span>${list_todo[index].email}</span>
+                    <button onClick="deleteTodo(${index})">X</button>
         </div>`
-    }
-    output_todo.innerHTML = temp
+})
+output_todo.innerHTML = temp
 }
 
 function deleteTodo(index) {
@@ -67,25 +64,50 @@ function deleteTodo(index) {
 
 function searchTodo() {
     let temp = ""
-    // console.log("test")
-
     list_todo.forEach(function (list, index) {
-        console.log(index)
-        if (list.nama === input_search.value) {
-            temp += `<div class="todos">
-            <span>${list.nama}</span>
-            <span>${list.address}</span>
-            <span>${list.phone}</span>
-            <span>${list.email}</span>
-            <button onClick="deleteTodo(${index})">X</button>
+        if (list.nama.includes(input_search.value)) {
+            temp += `
+            <div class="todos" onDblClick="openUpdateForm(${index})">
+                        <span>${list_todo[index].nama}</span>
+                        <span>${list_todo[index].address}</span>
+                        <span>${list_todo[index].phone}</span>
+                        <span>${list_todo[index].email}</span>
+                        <button onClick="deleteTodo(${index})">X</button>
             </div>`
         }
     })
+
+    console.log(temp)
+
     output_todo.innerHTML = temp
+}
+
+function resetSearch() {
+input_search.value=""
+displayTodo()
 }
 
 displayTodo()
 
-function updateTodo(id, ){
-    
+function openUpdateForm(index) {
+    input_name.value = list_todo[index].nama
+    input_address.value = list_todo[index].address
+    input_no_hp.value = list_todo[index].phone
+    input_email.value = list_todo[index].email
+    update_index = index
+    console.log('kk')
 }
+
+update_button.addEventListener('click', () => {
+    list_todo[update_index] = {
+        nama: input_name.value,
+        address: input_address.value,
+        phone: input_no_hp.value,
+        email: input_email.value
+    }
+    displayTodo()
+    input_name.value=""
+    input_address.value=""
+    input_no_hp.value=""
+    input_email.value=""
+})
