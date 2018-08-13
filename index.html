@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="./assets/css/style.css">
+    <title>Address Book</title>
+</head>
+
+<body>
+    <div>
+        <!-- <form> -->
+        <table>
+            <tr>
+                <td>
+                    <label for="input_name">Name</label>
+                </td>
+                <td>
+                    <label for="input_address">Address</label>
+                </td>
+                <td>
+                    <label for="input_no_hp">No Hp</label>
+                </td>
+                <td>
+                    <label for="input_email">Email</label>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <input type="name" name="input_name" id="input_name">
+                </td>
+                <td>
+                    <input type="address" name="input_address" id="input_address">
+                </td>
+                <td>
+                    <input type="no_hp" name="input_no_hp" id="input_no_hp">
+                </td>
+                <td>
+                    <input type="email" name="email" id="input_email">
+                </td>
+                <td>
+                    <button id="input_button">ADD</button>
+                </td>
+            </tr>
+        </table>
+        
+        <div id="output_todo">
+
+        </div>
+        <!-- </form> -->
+
+    </div>
+    <div class="search-class">
+            <h3>search todo</h3>
+            <input type="text" name="search_input" id="input_search" placeholder="search name">
+            <button id="search_button">Search</button>
+    </div><br>
+    <div class="update-class">
+            <table>
+                    <tr>
+                        <td>
+                            <label for="update_name">Name</label>
+                        </td>
+                        <td>
+                            <label for="update_address">Address</label>
+                        </td>
+                        <td>
+                            <label for="update_no_hp">No Hp</label>
+                        </td>
+                        <td>
+                            <label for="update_email">Email</label>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+                            <input type="name" name="update_name" id="update_name">
+                        </td>
+                        <td>
+                            <input type="address" name="updatet_address" id="updatet_address">
+                        </td>
+                        <td>
+                            <input type="no_hp" name="update_no_hp" id="update_no_hp">
+                        </td>
+                        <td>
+                            <input type="email" name="email" id="update_email">
+                        </td>
+                        <td>
+                            <button id="update_button">Update</button>
+                        </td>
+                    </tr>
+                </table>
+    </div>
+
+    <script src="./assets/js/address.js"></script>
+</body>
+
+</html>
