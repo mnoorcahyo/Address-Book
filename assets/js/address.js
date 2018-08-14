@@ -77,7 +77,7 @@ function searchTodo() {
         }
     })
 
-    console.log(temp)
+    // console.log(temp)
 
     output_todo.innerHTML = temp
 }
@@ -95,7 +95,7 @@ function openUpdateForm(index) {
     input_no_hp.value = list_todo[index].phone
     input_email.value = list_todo[index].email
     update_index = index
-    console.log('kk')
+    // console.log('kk')
 }
 
 update_button.addEventListener('click', () => {
