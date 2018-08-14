@@ -1,6 +1,6 @@
 #output_todo {
     margin-top: 10px;
-    border: 1px solid grey;
+    border: 3px solid grey;
     height: 400px;
     width: 800px;
 }
@@ -16,9 +16,19 @@
 }
 h3{
     margin-bottom: 5px;
+    font-size: 15px;
 }
 
 #update_form_group{
     margin-top: 10px;
     display: none;
+}
+
+body{
+    background-color: lightblue;
+}
+
+#head{
+    display: grid;
+    justify-content: center;    
 }
